@@ -1,0 +1,12 @@
+<div class="Log-In">
+  <h1>Log In</h1>
+  <p>CI</p>
+  <input type="text" [(ngModel)]="getUsuario().CI"/>
+  <p>Contraseña</p>
+  <input type="text" [(ngModel)]="getUsuario().contrasena"/>
+  <button (click)="verificarCredenciales()" [disabled]="!getUsuario().CI || !getUsuario().contrasena">Iniciar Sesion</button>
+  @if(getMensaje()){
+    <p>{{getMensaje()}}</p>
+  }
+  <button [routerLink]="['/crear-usuario']">Crear Usuario</button>
+</div>

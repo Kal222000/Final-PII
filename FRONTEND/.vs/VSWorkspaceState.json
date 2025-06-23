@@ -1,0 +1,15 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\auntentificacion",
+    "\\src\\app\\auntentificacion\\pages",
+    "\\src\\app\\auntentificacion\\pages\\log-in",
+    "\\src\\app\\crearUsuario",
+    "\\src\\app\\crearUsuario\\pages",
+    "\\src\\app\\crearUsuario\\pages\\crear-usuario"
+  ],
+  "SelectedNode": "\\src\\app\\auntentificacion\\pages\\log-in\\log-in.component.ts",
+  "PreviewInSolutionExplorer": false
+}

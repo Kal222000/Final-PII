@@ -1,0 +1,80 @@
+# ======================== #
+# Ignorar archivos y carpetas
+# para un proyecto con
+# Frontend (Angular) y
+# Backend (ASP.NET Core Web API)
+# ======================== #
+
+# -------------------------- #
+# Frontend (Angular) Exclusions
+# -------------------------- #
+# Directorio de módulos de Node.js
+/FRONTEND/node_modules/
+# Directorio de salida de la construcción (producción)
+/FRONTEND/dist/
+# Caché de Angular CLI
+/FRONTEND/.angular/cache/
+# Archivos de mapa de origen (sourcemaps)
+/FRONTEND/*.map
+# Archivos de registro de npm y Yarn
+/FRONTEND/npm-debug.log*
+/FRONTEND/yarn-debug.log*
+# Directorio de cobertura de pruebas
+/FRONTEND/coverage/
+# Archivos de configuración de VS Code específicos del usuario
+/FRONTEND/.vscode/
+# Archivos de depuración de Cypress/Karma/etc.
+/FRONTEND/cypress/videos/
+/FRONTEND/cypress/screenshots/
+/FRONTEND/karma-debug.log
+# Archivos de entorno local (si no se deben versionar)
+# Por ejemplo, si tienes un archivo `environment.ts` con variables sensibles
+# /FRONTEND/src/environments/environment.ts
+# /FRONTEND/src/environments/environment.prod.ts # Descomentar si no quieres versionar la configuración de producción.
+# Esto es opcional y depende de cómo manejes las configuraciones.
+# Por lo general, los archivos de entorno se versionan y las variables sensibles se inyectan en el CI/CD.
+
+# -------------------------- #
+# Backend (ASP.NET Core Web API) Exclusions
+# -------------------------- #
+# Directorios de compilación
+/BACKEND/bin/
+/BACKEND/obj/
+# Directorio de publicación
+/BACKEND/publish/
+# Archivos de Visual Studio
+/BACKEND/.vs/
+/BACKEND/*.user
+/BACKEND/*.suo
+/BACKEND/*.bak
+# Directorio de resultados de pruebas
+/BACKEND/TestResults/
+# Archivos de registro de la aplicación
+/BACKEND/*.log
+# Paquetes NuGet (opcional, si los descargas directamente en la solución)
+# Generalmente no es necesario porque están en el caché de NuGet
+# /BACKEND/packages/
+# Archivos de depuración y profiling
+/BACKEND/*.pdb
+/BACKEND/*.vsp
+
+# -------------------------- #
+# General Operating System & Editor Exclusions
+# -------------------------- #
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+# Archivos de swap de Vim
+*.swp
+# Archivos temporales generales
+*.tmp
+*~
+
+# -------------------------- #
+# Logs y caché globales (si los hubiera en la raíz del repositorio)
+# -------------------------- #
+# Cualquier archivo .log que no esté en una subcarpeta específica
+*.log
+# Archivos de caché del IDE/Editor (ej: IntelliJ IDEA, WebStorm)
+.idea/

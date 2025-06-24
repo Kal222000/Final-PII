@@ -1,0 +1,47 @@
+<div class="pagina-principal">
+
+  @if(mensajeAlerta) {
+  <div class="popup-alerta">
+    <p>{{ mensajeAlerta }}</p>
+    <button (click)="cerrarAlerta()">X</button>
+  </div>
+  }
+
+  <div class="encabezado">
+    <button [routerLink]="['/carrito']">🛒 Carrito</button>
+    <button [routerLink]="['/historial']">📚 Historial</button>
+  </div>
+
+  <div class="busqueda">
+    <input type="text" [(ngModel)]="terminoBusqueda" (input)="buscarLibros()" placeholder="Buscar libros por título o autor..." />
+  </div>
+
+  <div class="lista-libros">
+    @for(libro of librosMostrados; track libro.ID) {
+    <div class="libro">
+      <div>
+        <h3>{{ libro.Titulo }}</h3>
+        <p>{{ libro.Autor }}</p>
+      </div>
+      <button (click)="agregarAlCarrito(libro)">Agregar al Carrito</button>
+    </div>
+    }
+
+    @if(librosMostrados.length === 0) {
+    <p>No se encontraron resultados.</p>
+    }
+  </div>
+
+  <div class="paginacion">
+    <button (click)="irAPagina(paginaActual - 1)" [disabled]="paginaActual === 1">Anterior</button>
+
+    @for(p of paginas; track p) {
+    <button [class.activo]="p === paginaActual"
+            (click)="irAPagina(p)">
+      {{ p }}
+    </button>
+    }
+
+    <button (click)="irAPagina(paginaActual + 1)" [disabled]="paginaActual === paginas.length">Siguiente</button>
+  </div>
+</div>

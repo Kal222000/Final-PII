@@ -1,13 +1,14 @@
 using System;
-using BACKEND.DTO;
+using BACKEND.DTO.Envia;
+using BACKEND.DTO.Recibe;
 using System.Threading.Tasks;
 
 namespace BACKEND.Repositorios.Interfaces
 {
     public interface IUsuarioRepositorio
     {
-        Task<int?> ValidarUsuario(ValidarUsuarioDTO usuario);
+        DatosUsuarioDTO ValidarUsuario(CredencialesDTO usuario);
 
-        Task<int?> CreacionCliente(CreacionClienteDTO usuario);
+        bool CreacionCliente(NuevoUsuarioDTO usuario);
     }
 }

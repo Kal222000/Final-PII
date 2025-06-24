@@ -1,8 +1,9 @@
 using System;
-using System.Threading.Tasks;
-using BACKEND.DTO;
+using BACKEND.DTO.Envia;
+using BACKEND.DTO.Recibe;
 using BACKEND.Repositorios;
 using BACKEND.Servicios.Interfaces;
+using BACKEND.Servicios.Validaciones;
 
 namespace BACKEND.Servicios
 {
@@ -10,83 +11,47 @@ namespace BACKEND.Servicios
     {
         private readonly UsuarioRepositorio repositorio;
 
+        private readonly UsuarioValidaciones validaciones;
+
         public UsuarioServicio()
         {
-            repositorio = new UsuarioRepositorio();;
+            repositorio = new UsuarioRepositorio();
+            validaciones = new UsuarioValidaciones();
         }
         
-        public async Task<int?> ValidarUsuario(ValidarUsuarioDTO usuario)
+        public DatosUsuarioDTO? ValidarUsuario(CredencialesDTO usuario)
         {
-            return await repositorio.ValidarUsuario(usuario);
+            return  repositorio.ValidarUsuario(usuario);
         }
 
-        public async Task<int?> CreacionCliente(CreacionClienteDTO usuario)
+        public bool CreacionCliente(NuevoUsuarioDTO usuario)
         {
-            bool aux1 = Validar(usuario);
-            bool aux2 = ValidarInts(usuario);
-            bool aux3 = ValidarContrasena(usuario.Contrasena);
-            bool aux4 = MayorDeEdad(usuario.FechaNacimiento);
-
-            if (aux1 == false)
+            if (validaciones.Validar(usuario) == false)
             {
                 throw new Exception("Los espacios no pueden estar en blanco o nulos.");
             }
-            else if (aux2 == false)
+
+            if (validaciones.ValidarInts(usuario) == false)
             {
                 throw new Exception("El carnet no puede ser negativo.");
             }
-            else if (aux3 == false)
+            
+            if (validaciones.ValidarContrasena(usuario.Contrasena) == false)
             {
                 throw new Exception("La contraseña debe contener al menos una mayúscula y un número.");
             }
-            else if(aux4 == false)
+            
+            if(validaciones.MayorDeEdad(usuario.FechaNacimiento) == false)
             {
                 throw new Exception("No puede ser menor de Edad.");
             }
 
-                return await repositorio.CreacionCliente(usuario);
-        }
-
-        public bool ValidarInts(CreacionClienteDTO usuario)
-        {
-            if (usuario.Carnet <= 0) return false;
-            return true;
-        }
-
-        public bool Validar(CreacionClienteDTO usuario)
-        {
-            if (string.IsNullOrWhiteSpace(usuario.Nombre)) return false;
-            if (string.IsNullOrWhiteSpace(usuario.ApellidoPaterno)) return false;
-            if (string.IsNullOrWhiteSpace(usuario.ApellidoMaterno)) return false;
-            return true;
-        }
-
-        public bool ValidarContrasena(string contrasena)
-        {
-            if (string.IsNullOrWhiteSpace(contrasena) || contrasena.Length < 8)
-                return false;
-
-            bool Mayuscula = false;
-            bool Numero = false;
-
-            foreach (char c in contrasena)
+            if(validaciones.ValidarEspacios(usuario.Nombre, usuario.ApellidoPaterno, usuario.ApellidoMaterno, usuario.Contrasena) == false)
             {
-                if (char.IsUpper(c)) Mayuscula = true;
-                if (char.IsDigit(c)) Numero = true;
+                throw new Exception("No pueden existir espacios entre los datos Nombre, ApellidoPaterno, ApellidoMaterno y Contrasena");
             }
 
-            return Mayuscula && Numero;
-        }
-
-        public bool MayorDeEdad(DateOnly fechaNacimiento)
-        {
-            var hoy = DateOnly.FromDateTime(DateTime.Today);
-            int edad = hoy.Year - fechaNacimiento.Year;
-
-            if (fechaNacimiento > hoy.AddYears(-edad))
-                edad--;
-
-            return edad >= 18;
+                return repositorio.CreacionCliente(usuario);
         }
 
     }

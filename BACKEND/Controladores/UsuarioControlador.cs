@@ -1,14 +1,14 @@
 using System;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
-using BACKEND.DTO;
+using BACKEND.DTO.Envia;
+using BACKEND.DTO.Recibe;
 using BACKEND.Servicios;
 using BACKEND.Servicios.Interfaces;
 
 namespace BACKEND.Controladores
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/usuario")]
     public class UsuarioControlador : ControllerBase
     {
         private readonly IUsuarioServicio servicio;
@@ -19,19 +19,20 @@ namespace BACKEND.Controladores
         }
 
         [HttpPost("ValidarUsuario")]
-        public async Task<IActionResult> ValidarUsuario([FromBody] ValidarUsuarioDTO usuario)
+        public IActionResult ValidarUsuario([FromBody] CredencialesDTO usuario)
         {
-            var resultado = await servicio.ValidarUsuario(usuario);
-            if (resultado == null) return Unauthorized();
+            var resultado = servicio.ValidarUsuario(usuario);
+
             return Ok(resultado);
         }
 
         [HttpPost("CreacionCliente")]
-        public async Task<IActionResult> CreacionCliente([FromBody] CreacionClienteDTO usuario)
+        public IActionResult CreacionCliente([FromBody] NuevoUsuarioDTO usuario)
         {
             try
             {
-                var resultado = await servicio.CreacionCliente(usuario);
+                var resultado = servicio.CreacionCliente(usuario);
+
                 return Ok(resultado);
             }
             catch (Exception ex)

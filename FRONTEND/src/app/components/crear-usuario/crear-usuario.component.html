@@ -1,0 +1,23 @@
+<div class="CrearUsuario">
+  <h1>Crear Usuario</h1>
+  <p>Nombre</p>
+  <input type="text" [(ngModel)]="getNuevoUsuario().Nombre" />
+  <p>Apellido Paterno</p>
+  <input type="text" [(ngModel)]="getNuevoUsuario().ApellidoPaterno" />
+  <p>Apellido Materno</p>
+  <input type="text" [(ngModel)]="getNuevoUsuario().ApellidoMaterno" />
+  <p>Fecha de Nacimiento</p>
+  <input type="date" [(ngModel)]="getNuevoUsuario().FechaNacimiento" />
+  <p>CI</p>
+  <input type="text" [(ngModel)]="getNuevoUsuario().Carnet" />
+  <p>Contraseña</p>
+  <input type="password" [(ngModel)]="getNuevoUsuario().Contrasena" />
+  <br />
+  <button (click)="confirmarUsuario()" [disabled]="!getNuevoUsuario().Nombre
+                                                  || !getNuevoUsuario().ApellidoPaterno
+                                                  || !getNuevoUsuario().ApellidoMaterno
+                                                  || !getNuevoUsuario().FechaNacimiento
+                                                  || !getNuevoUsuario().Carnet
+                                                  || !getNuevoUsuario().Contrasena
+                                                  ">Crear Usuario</button>
+</div>

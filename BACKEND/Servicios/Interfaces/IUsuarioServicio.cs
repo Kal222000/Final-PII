@@ -1,13 +1,14 @@
 using System;
 using System.Threading.Tasks;
-using BACKEND.DTO;
+using BACKEND.DTO.Envia;
+using BACKEND.DTO.Recibe;
 
 namespace BACKEND.Servicios.Interfaces
 {
     public interface IUsuarioServicio
     {
-        Task<int?> ValidarUsuario(ValidarUsuarioDTO usuario);
+        DatosUsuarioDTO? ValidarUsuario(CredencialesDTO usuario);
 
-        Task<int?> CreacionCliente(CreacionClienteDTO usuario);
+        bool CreacionCliente(NuevoUsuarioDTO usuario);
     }
 }

@@ -16,7 +16,7 @@ namespace BACKEND.Servicios
             repositorio = new LibroRepositorio();
         }
 
-        public List<DatosLibroDTO> DevolverLibros()
+        public List<LibroDTO> DevolverLibros()
         {
             return repositorio.DevolverLibros();
         }

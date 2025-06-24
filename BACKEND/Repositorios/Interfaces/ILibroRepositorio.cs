@@ -6,7 +6,7 @@ namespace BACKEND.Repositorios.Interfaces
 {
     public interface ILibroRepositorio
     {
-        List<DatosLibroDTO> DevolverLibros();
+        List<LibroDTO> DevolverLibros();
 
      /*   int CantidadCopiasDisponibles();
 

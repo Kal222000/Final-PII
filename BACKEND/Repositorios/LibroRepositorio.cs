@@ -11,13 +11,13 @@ namespace BACKEND.Repositorios
 {
     public class LibroRepositorio : ILibroRepositorio
     {
-        public List<DatosLibroDTO> DevolverLibros()
+        public List<LibroDTO> DevolverLibros()
         {
             var LibroColleccion = MongoConexion.ObtenerLibros();
 
             var Libros = LibroColleccion.Find(Libro => !Libro.eliminado).ToList();
 
-            List<DatosLibroDTO> lista = Libros.Select(Libro => new DatosLibroDTO
+            List<LibroDTO> lista = Libros.Select(Libro => new LibroDTO
             {
                 Id = Libro._id,
                 Titulo = Libro.titulo,

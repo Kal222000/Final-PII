@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BACKEND.DTO.Envia
 {
-    public class DatosLibroDTO
+    public class LibroDTO
     {
         public string Id { get; set; }
 

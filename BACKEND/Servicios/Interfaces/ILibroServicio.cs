@@ -6,6 +6,6 @@ namespace BACKEND.Servicios.Interfaces
 {
     public interface ILibroServicio
     {
-        List<DatosLibroDTO> DevolverLibros();
+        List<LibroDTO> DevolverLibros();
     }
 }
